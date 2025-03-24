@@ -7,7 +7,7 @@ app.MapGet("/", () =>
 {
     Assert.Always(false, "Harcoded to Fail");
     
-    return "Hello Web!";
+    return "Hello Antithesis!";
 });
 
 Lifecycle.SetupComplete();

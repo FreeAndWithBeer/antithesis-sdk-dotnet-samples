@@ -3,9 +3,9 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 COPY . ./
-RUN dotnet restore
-RUN dotnet build --no-restore
-RUN dotnet publish --no-build -o out
+RUN dotnet restore WebService/WebService.csproj
+RUN dotnet build WebService/WebService.csproj --no-restore
+RUN dotnet publish WebService/WebService.csproj --no-build -o out
 
 ##### Stage 2 of 2 - Production Image
 
@@ -17,4 +17,4 @@ COPY --from=build /app/out .
 RUN mkdir -p /opt/antithesis/catalog
 RUN ln -s ../../../app /opt/antithesis/catalog/app
 
-ENTRYPOINT ["dotnet", "HelloWeb.dll"]
+ENTRYPOINT ["dotnet", "WebService.dll"]
