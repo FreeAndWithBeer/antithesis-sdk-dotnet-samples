@@ -4,8 +4,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 COPY . ./
 RUN dotnet restore WebService/WebService.csproj
-RUN dotnet build WebService/WebService.csproj --no-restore
-RUN dotnet publish WebService/WebService.csproj --no-build -o out
+RUN dotnet build WebService/WebService.csproj --configuration Release --no-restore
+RUN dotnet publish WebService/WebService.csproj --configuration Release --no-build -o out
 
 ##### Stage 2 of 2 - Production Image
 
@@ -16,5 +16,8 @@ COPY --from=build /app/out .
 # Symlink to the folder where Antithesis will automatically instrument the binaries.
 RUN mkdir -p /opt/antithesis/catalog
 RUN ln -s ../../../app /opt/antithesis/catalog/app
+
+# Copy our Test Composer scripts to the folder where Antithesis will find them.
+COPY test_composer /opt/antithesis/test/v1/helloantithesis
 
 ENTRYPOINT ["dotnet", "WebService.dll"]

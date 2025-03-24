@@ -1,0 +1,5 @@
+services:
+  webservice:
+    container_name: webservice
+    hostname: webservice
+    image: sdk-dotnet-samples/helloantithesis:latest
