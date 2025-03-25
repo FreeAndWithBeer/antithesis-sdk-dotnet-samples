@@ -6,4 +6,4 @@ RUN apk add --no-cache bash curl
 COPY test_composer /opt/antithesis/test/v1/helloantithesis
 RUN chmod -R +x /opt/antithesis/test/v1/helloantithesis
 
-CMD ["/bin/bash"]
+CMD ["sleep", "infinity"]
