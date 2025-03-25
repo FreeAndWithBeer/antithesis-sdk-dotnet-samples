@@ -18,6 +18,8 @@ RUN mkdir -p /opt/antithesis/catalog
 RUN ln -s ../../../app /opt/antithesis/catalog/app
 
 # Copy our Test Composer scripts to the folder where Antithesis will find them.
+# Change the scripts' permissions to allow them to be executed.
 COPY test_composer /opt/antithesis/test/v1/helloantithesis
+RUN chmod -R +x /opt/antithesis/test/v1/helloantithesis
 
 ENTRYPOINT ["dotnet", "WebService.dll"]
