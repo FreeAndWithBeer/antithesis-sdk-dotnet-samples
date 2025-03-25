@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM docker.io/library/alpine:latest
 RUN apk add --no-cache bash curl
 
 # Copy our Test Composer scripts to the folder where Antithesis will find them.
