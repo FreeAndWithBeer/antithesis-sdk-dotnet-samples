@@ -3,3 +3,8 @@ services:
     container_name: webservice
     hostname: webservice
     image: sdk-dotnet-samples/helloantithesis:latest
+
+  workload:
+    container_name: workload
+    hostname: workload
+    image: sdk-dotnet-samples/helloantithesis_workload:latest
