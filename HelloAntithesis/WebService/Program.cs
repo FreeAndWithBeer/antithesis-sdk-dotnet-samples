@@ -7,7 +7,8 @@ var random = Antithesis.SDK.Random.SharedThrowIfNativeLibraryNotExists;
 
 app.MapGet("/", async () =>
 {
-    Assert.Always(random.NextDouble() < 0.9999, "Should Fail Randomly 1 of 10k");
+    Assert.Always(true, "Hardcoded to Pass");
+    Assert.SometimesGreaterThan(random.NextDouble(), 0.9999, "Should Pass Randomly 1 of 10k");
 
     await Task.Delay(100);
     
